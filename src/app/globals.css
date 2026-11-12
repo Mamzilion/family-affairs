@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f4efe6;
+  --paper: #fbf8f2;
+  --ink: #1c1814;
+  --muted: #776d62;
+  --line: #e0d7c9;
+  --gold: #b0843e;
+  --clay: #9c4a2f;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-clay: var(--clay);
+  --font-sans: "Manrope Variable", system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 35s linear infinite; }
+
+/* Motif d'attente pour les photos manquantes */
+.placeholder {
+  background-image:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.07) 0 2px, transparent 2px 14px),
+    radial-gradient(circle at 30% 20%, rgb(255 255 255 / 0.25), transparent 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee { animation: none; }
+  html { scroll-behavior: auto; }
+}
